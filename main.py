@@ -5,16 +5,27 @@ import pygame
 from constants import *
 
 def main():
-    pygame.init() #initialize pygame
-    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) #Initialize the screen to be played on
+    #Initialize modules, vars, and objects needed
+    pygame.init() 
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) #Create display
+    clock = pygame.time.Clock() #Create time tracking object
+    dt = 0 #create delta time var
 
-
-    print("Starting asteroids!") #print information to console when starting program
+    # Print to screen upon initialization
+    print("Starting asteroids!")
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
 
-    while True: # Game loop portion of file
+    #Create game loop
+    while True:
+        for event in pygame.event.get(): # Check if user wanted to exit the program
+            if event.type == pygame.QUIT:
+                return
+
         screen.fill((0,0,0)) # fill the screen with the color black
         pygame.display.flip() # refresh screen
+
+        #limit framerate to 60 FPS
+        dt = clock.tick(60)/1000
 if __name__ == "__main__":
     main()
