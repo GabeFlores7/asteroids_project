@@ -52,7 +52,7 @@ def main():
 
             for shot in shots:
                 if (asteroid.collision_with(shot)): #If asteroid collides with asteroid, then destroy both
-                    asteroid.kill()
+                    asteroid.split()
                     shot.kill()
 
         #Render to screen
