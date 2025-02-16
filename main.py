@@ -4,18 +4,25 @@
 import pygame
 from constants import *
 from player import *
+from asteroidfield import *
 def main():
     #Initialize modules, vars, and objects needed
     pygame.init() 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) #Create display
     clock = pygame.time.Clock() #Create time tracking object
 
-    updatable = pygame.sprite.Group()
+    #Initialize Groups
+    updatable = pygame.sprite.Group() 
     drawable = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
 
+    #Assign groups to their respective containers
     Player.containers = (updatable, drawable)
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = (updatable,)
 
     player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+    asteroidfield = AsteroidField()
 
     dt = 0 #create delta time var
 
