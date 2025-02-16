@@ -3,8 +3,7 @@
 # throughout this file
 import pygame
 from constants import *
-from player import Player
-
+from player import *
 def main():
     #Initialize modules, vars, and objects needed
     pygame.init() 
@@ -20,10 +19,14 @@ def main():
 
     #Create game loop
     while True:
+        #Check for Player Input
         for event in pygame.event.get(): # Check if user wanted to exit the program
             if event.type == pygame.QUIT:
                 return
+                
+        player.update(dt)
 
+        #Render to screen
         screen.fill("black") # fill the screen with the color black
         player.draw(screen) #render player onto screen
         pygame.display.flip() # refresh screen
