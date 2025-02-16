@@ -9,8 +9,15 @@ def main():
     pygame.init() 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) #Create display
     clock = pygame.time.Clock() #Create time tracking object
-    dt = 0 #create delta time var
+
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    Player.containers = (updatable, drawable)
+
     player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+
+    dt = 0 #create delta time var
 
     # Print to screen upon initialization
     print("Starting asteroids!")
@@ -23,12 +30,14 @@ def main():
         for event in pygame.event.get(): # Check if user wanted to exit the program
             if event.type == pygame.QUIT:
                 return
-                
-        player.update(dt)
+        
+        for obj in updatable: # iterate over updatable group
+            obj.update(dt) #Update each player class object
 
         #Render to screen
         screen.fill("black") # fill the screen with the color black
-        player.draw(screen) #render player onto screen
+        for obj in drawable: #Iterate over drawable group
+            obj.draw(screen) #Render each player class object onto screen
         pygame.display.flip() # refresh screen
 
         #limit framerate to 60 FPS
