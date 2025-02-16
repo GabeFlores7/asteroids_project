@@ -5,6 +5,8 @@ import pygame
 from constants import *
 from player import *
 from asteroidfield import *
+import sys
+
 def main():
     #Initialize modules, vars, and objects needed
     pygame.init() 
@@ -41,6 +43,10 @@ def main():
         for obj in updatable: # iterate over updatable group
             obj.update(dt) #Update each player class object
 
+        for asteroid in asteroids:
+            if(asteroid.collision_with(player)):
+                sys.exit("Game over!")
+
         #Render to screen
         screen.fill("black") # fill the screen with the color black
         for obj in drawable: #Iterate over drawable group
@@ -49,5 +55,6 @@ def main():
 
         #limit framerate to 60 FPS
         dt = clock.tick(60)/1000
+        
 if __name__ == "__main__":
     main()
