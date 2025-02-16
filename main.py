@@ -47,8 +47,13 @@ def main():
             obj.update(dt) #Update each player class object
 
         for asteroid in asteroids:
-            if(asteroid.collision_with(player)):
+            if(asteroid.collision_with(player)): #If asteroid collides with player, then "Game over!"
                 sys.exit("Game over!")
+
+            for shot in shots:
+                if (asteroid.collision_with(shot)): #If asteroid collides with asteroid, then destroy both
+                    asteroid.kill()
+                    shot.kill()
 
         #Render to screen
         screen.fill("black") # fill the screen with the color black
