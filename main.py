@@ -3,6 +3,7 @@
 # throughout this file
 import pygame
 from constants import *
+from player import Player
 
 def main():
     #Initialize modules, vars, and objects needed
@@ -10,6 +11,7 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) #Create display
     clock = pygame.time.Clock() #Create time tracking object
     dt = 0 #create delta time var
+    player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
 
     # Print to screen upon initialization
     print("Starting asteroids!")
@@ -22,7 +24,8 @@ def main():
             if event.type == pygame.QUIT:
                 return
 
-        screen.fill((0,0,0)) # fill the screen with the color black
+        screen.fill("black") # fill the screen with the color black
+        player.draw(screen) #render player onto screen
         pygame.display.flip() # refresh screen
 
         #limit framerate to 60 FPS
