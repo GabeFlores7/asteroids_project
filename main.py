@@ -4,6 +4,9 @@
 import pygame
 from constants import *
 from player import *
+from asteroidfield import *
+from asteroid import *
+
 
 def main():
 
@@ -11,10 +14,18 @@ def main():
     clock = pygame.time.Clock() # initialize object to keep track of time
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) # create object for display
 
+    # initialize containers
     updatable = pygame.sprite.Group() 
     drawable = pygame.sprite.Group()
-    Player.containers = (updatable, drawable) # place player obj into two different groups
+    asteroids = pygame.sprite.Group()
+
+    # organize classes using containers
+    Player.containers = (updatable, drawable) 
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = (updatable,)
+
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2) # initialize player obj to screen's center
+    asteroid_field = AsteroidField() # initialize asteroid field
 
     dt = 0
 
