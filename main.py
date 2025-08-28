@@ -19,15 +19,16 @@ def main():
     updatable = pygame.sprite.Group() 
     drawable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
+    shots = pygame.sprite.Group()
 
     # organize classes using containers
     Player.containers = (updatable, drawable) 
     Asteroid.containers = (asteroids, updatable, drawable)
     AsteroidField.containers = (updatable,)
+    Shot.containers = (shots, updatable, drawable)
 
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2) # initialize player obj to screen's center
     asteroid_field = AsteroidField() # initialize asteroid field
-
     dt = 0
 
     print("Starting Asteroids!")
